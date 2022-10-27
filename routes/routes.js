@@ -8,6 +8,7 @@ module.exports = function(){
 
 //Routes
 router.post('/saveServer', serverController.getServerComplet);
+router.get('/getAllUsers', serverController.getAllUsersDc);
 
 return router;
 }

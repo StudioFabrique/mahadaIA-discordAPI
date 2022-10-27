@@ -139,6 +139,12 @@ exports.getServerComplet = async (req, res, next) => {
 
 exports.updateServerRefs = async (req, res, next) => {
 
-    
 
+}
+
+exports.getAllUsersDc = async (req, res, next) => {
+
+   const usersDc = await modelUser.find()
+
+    res.send(usersDc)
 }
