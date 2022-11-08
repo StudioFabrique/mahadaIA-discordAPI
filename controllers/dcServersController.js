@@ -148,3 +148,34 @@ exports.getAllUsersDc = async (req, res, next) => {
 
     res.send(usersDc)
 }
+
+
+
+exports.getDcUser = async ( req, res, next ) => {
+
+    const etu = req.params;
+    
+    try {
+        const usersDc = await modelUser.findById(etu);
+        res.json(usersDc);
+        
+    } catch (error) {
+        console.log(error);
+        next();
+    }
+}
+
+exports.getMessagesById = async ( req, res, next ) => {
+
+    const etu = req.params;
+    console.log(req.params)
+    
+    try {
+        const messagesDc = await modelMessage.find(etu);
+        res.json(messagesDc);
+        
+    } catch (error) {
+        next();
+        console.log(error);
+    }
+}

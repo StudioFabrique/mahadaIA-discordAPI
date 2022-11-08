@@ -9,6 +9,8 @@ module.exports = function(){
 //Routes
 router.post('/saveServer', serverController.getServerComplet);
 router.get('/getAllUsers', serverController.getAllUsersDc);
+router.get('/getUserById/:_id', serverController.getDcUser);
+router.get('/getMessages/:userID', serverController.getMessagesById);
 
 return router;
 }
