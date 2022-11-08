@@ -4,7 +4,6 @@ const cors = require('cors');
 const routes = require('./routes/routes');
 const path = require('path')
 const publicPath = path.resolve(__dirname, 'public')
-const fetch = require('node-fetch')
 
 require('dotenv').config();
 
