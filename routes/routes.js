@@ -11,6 +11,7 @@ router.post('/saveServer', serverController.getServerComplet);
 router.get('/getAllUsers', serverController.getAllUsersDc);
 router.get('/getUserById/:_id', serverController.getDcUser);
 router.get('/getMessages/:userID', serverController.getMessagesById);
+router.get('/avatars', serverController.getAvatar);
 
 return router;
 }

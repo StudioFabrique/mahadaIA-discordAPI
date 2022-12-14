@@ -69,7 +69,7 @@ exports.getServerComplet = async (req, res, next) => {
                     messagesDc.push(message);
                 })
             )
-            modelMessage.insertMany(messagesDc).then(console.log("saved messages"));
+            modelMessage.insertMany(messagesDc);
             })
 
                  //  ================ ==recovery of messages END ==============================
@@ -90,7 +90,7 @@ exports.getServerComplet = async (req, res, next) => {
                     channelsArray.push(channel);
                 })
 
-               await modelChannel.insertMany(channelsArray).then(console.log("saved channels"));
+               await modelChannel.insertMany(channelsArray);
 
 
                  // CHANNEL ARRAY END
@@ -103,6 +103,7 @@ exports.getServerComplet = async (req, res, next) => {
                     let user = {
                         userID: u.user.id,
                         userName: u.user.username,
+                        avatar: `https://cdn.discordapp.com/avatars/${u.user.id}/${u.user.avatar}.png`,
                         serverID: [guild],
                         serverRef: [],
                         messagesRef: []
@@ -111,7 +112,7 @@ exports.getServerComplet = async (req, res, next) => {
                     usersArray.push(user);
                 })
 
-               await modelUser.insertMany(usersArray).then(console.log("saved users"));
+               await modelUser.insertMany(usersArray);
 
                  // !SAVE A SERVER
                  // ###########################################################
@@ -127,7 +128,7 @@ exports.getServerComplet = async (req, res, next) => {
                     usersRef: [],
                     messagesRef: [],
                 });
-                await server.save().then(console.log("server saved"));
+                await server.save();
 
                 res.send("server saved");
 
@@ -179,3 +180,26 @@ exports.getMessagesById = async ( req, res, next ) => {
         console.log(error);
     }
 }
+
+exports.getAvatar = async ( req, res, next ) => {
+
+   let avatars;
+    
+    try {
+        const userAvatar = await fetch(`https://cdn.discordapp.com/avatars/724408829953179678/0731209b004e1516d11b18fca3bd8a1d.JPEG,`, {
+            headers: {
+                'Authorization': `Bot ${process.env.DSTOKEN}`
+            }
+        })
+        // const avatars = await userAvatar.json();
+
+        res.json(userAvatar);
+        
+    } catch (error) {
+        next();
+        console.log(error);
+    }
+}
+
+
+
